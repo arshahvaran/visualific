@@ -1,0 +1,274 @@
+{
+  "about": "Palette names, colour values and orders copied unchanged from Rang (palettes/*.json). Rang dedicates this palette data to the public domain under CC0 1.0 Universal; see LICENSES/README.md in the Visualific repository, https://github.com/arshahvaran/visualific.",
+  "project": "Rang: color palettes from Persian art",
+  "author": "Mohsen Tahmasebi Nasab",
+  "repository": "https://github.com/mohsennasab/Rang",
+  "version": "0.3.0",
+  "commit": "f30cbd7f8b133e6ce0ed1b0d2ff38f7e29af09e1",
+  "license": "CC0-1.0",
+  "palettes": {
+    "gilas": {
+      "name": "Gilas",
+      "colors": [
+        "#58463f",
+        "#598fb6",
+        "#964765",
+        "#b8715b",
+        "#d8c723"
+      ],
+      "order": [
+        1,
+        3,
+        5,
+        4,
+        2
+      ]
+    },
+    "golestan": {
+      "name": "Golestan",
+      "colors": [
+        "#432f2c",
+        "#ae6259",
+        "#b57f86",
+        "#b5b5ac",
+        "#cbb11c",
+        "#9a9a68",
+        "#45939c",
+        "#577ab1",
+        "#333a80"
+      ],
+      "order": [
+        4,
+        5,
+        8,
+        6,
+        1,
+        7,
+        3,
+        9,
+        2
+      ]
+    },
+    "iwan": {
+      "name": "Iwan",
+      "colors": [
+        "#efbf15",
+        "#b99241",
+        "#6897b7",
+        "#2e89ab",
+        "#3263ac",
+        "#0e37ae",
+        "#0412cc",
+        "#150c7d",
+        "#06055a"
+      ],
+      "order": [
+        1,
+        5,
+        3,
+        7,
+        4,
+        9,
+        6,
+        8,
+        2
+      ]
+    },
+    "kashan": {
+      "name": "Kashan",
+      "colors": [
+        "#7f3020",
+        "#ab4a47",
+        "#c07049",
+        "#c59b46",
+        "#ccac7e",
+        "#e2cfb1",
+        "#8a9463",
+        "#345f72",
+        "#1a3b45"
+      ],
+      "order": [
+        3,
+        6,
+        4,
+        8,
+        7,
+        1,
+        9,
+        5,
+        2
+      ]
+    },
+    "khatam": {
+      "name": "Khatam",
+      "colors": [
+        "#1c110b",
+        "#542020",
+        "#8d310e",
+        "#bf480d",
+        "#b27a3c",
+        "#c58c51",
+        "#d9a545",
+        "#dbba94",
+        "#e5c870"
+      ],
+      "order": [
+        1,
+        6,
+        5,
+        3,
+        8,
+        4,
+        7,
+        9,
+        2
+      ]
+    },
+    "mina": {
+      "name": "Mina",
+      "colors": [
+        "#581c1d",
+        "#984946",
+        "#c19498",
+        "#e7f2f6",
+        "#9ecaee",
+        "#56adee",
+        "#4090a2",
+        "#193caa",
+        "#07187b"
+      ],
+      "order": [
+        5,
+        3,
+        7,
+        1,
+        6,
+        9,
+        4,
+        8,
+        2
+      ]
+    },
+    "nasir": {
+      "name": "Nasir",
+      "colors": [
+        "#261410",
+        "#3b1261",
+        "#4027e1",
+        "#518ffd",
+        "#74ecf9",
+        "#50a877",
+        "#6dd96f",
+        "#ebc05c",
+        "#f04a23"
+      ],
+      "order": [
+        1,
+        7,
+        3,
+        5,
+        2,
+        8,
+        9,
+        4,
+        6
+      ]
+    },
+    "rasht": {
+      "name": "Rasht",
+      "colors": [
+        "#5e3c87",
+        "#4a657f",
+        "#4470d3",
+        "#d03232",
+        "#d96e4c",
+        "#3f887f",
+        "#55a67e",
+        "#ac98ba",
+        "#cfc4d8"
+      ],
+      "order": [
+        4,
+        7,
+        1,
+        8,
+        2,
+        9,
+        5,
+        6,
+        3
+      ]
+    },
+    "rostan": {
+      "name": "Rostan",
+      "colors": [
+        "#4b241e",
+        "#603d34",
+        "#883c3e",
+        "#aa3a41",
+        "#d63d3b",
+        "#d26c55",
+        "#d98665",
+        "#c0947d",
+        "#d2b6a1"
+      ],
+      "order": [
+        1,
+        9,
+        5,
+        8,
+        3,
+        7,
+        4,
+        6,
+        2
+      ]
+    },
+    "shahnameh": {
+      "name": "Shahnameh",
+      "colors": [
+        "#41356f",
+        "#4b3d97",
+        "#798cb8",
+        "#6d866a",
+        "#596956",
+        "#d4b96b",
+        "#d5c9b7",
+        "#b0472c",
+        "#a6373e"
+      ],
+      "order": [
+        1,
+        8,
+        4,
+        7,
+        5,
+        6,
+        2,
+        3,
+        9
+      ]
+    },
+    "termeh": {
+      "name": "Termeh",
+      "colors": [
+        "#e5f0ee",
+        "#c8dfe3",
+        "#a9ccd7",
+        "#7fb5c1",
+        "#5d95a8",
+        "#3e738e",
+        "#274e68"
+      ],
+      "order": [
+        1,
+        7,
+        5,
+        6,
+        3,
+        4,
+        2
+      ]
+    }
+  }
+}

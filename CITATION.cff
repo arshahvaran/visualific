@@ -7,6 +7,9 @@ authors:
     given-names: Ali Reza
     orcid: "https://orcid.org/0000-0001-7846-054X"
 repository-code: "https://github.com/arshahvaran/visualific"
+# The code is MIT. The package also bundles Liberation Serif (OFL-1.1) and Rang palette
+# values (CC0-1.0); see LICENSES/README.md. CFF takes single licence identifiers and reads
+# a list as alternatives (OR), so only the code licence is given here.
 license: MIT
 version: 0.0.1.dev0
 keywords:
