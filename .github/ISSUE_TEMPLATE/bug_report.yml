@@ -1,0 +1,29 @@
+name: Bug report
+description: Something does not work or looks wrong
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include the code that reproduces the problem and, for figures, an image of the result.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: >-
+        Run `python -c "import visualific, matplotlib, numpy, pandas, platform;
+        print(visualific.__version__, matplotlib.__version__, numpy.__version__,
+        pandas.__version__, matplotlib.get_backend(), platform.platform())"`
+        and paste its output.
+      render: text
+    validations:
+      required: true

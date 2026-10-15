@@ -1,0 +1,31 @@
+name: New template
+description: Propose a figure type for Visualific
+labels: ["new template"]
+body:
+  - type: input
+    id: figure
+    attributes:
+      label: Published figure
+      description: A link or DOI to a published figure that shows the template.
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question the figure answers
+      description: In one or two sentences, what does a reader learn from this figure?
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data shape
+      description: For example, "one row per time step with observed, predicted and model columns".
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why the existing templates do not cover it
+    validations:
+      required: true

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use Visualific in your work, please cite it as below."
+title: "Visualific: publication figures for engineering and environmental research"
+type: software
+authors:
+  - family-names: Shahvaran
+    given-names: Ali Reza
+    orcid: "https://orcid.org/0000-0001-7846-054X"
+repository-code: "https://github.com/arshahvaran/visualific"
+license: MIT
+version: 0.0.1.dev0
+keywords:
+  - matplotlib
+  - scientific figures
+  - colour vision deficiency
+  - hydrology

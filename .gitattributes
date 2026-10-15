@@ -1,0 +1,21 @@
+# Normalise line endings so file hashes and data tests agree on every platform
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary formats
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.tif binary
+*.tiff binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.ttf binary
+*.otf binary
+*.woff2 binary
+*.npz binary
+*.parquet binary
+*.nc binary
+*.xlsx binary

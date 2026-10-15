@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "visualific"
+dynamic = ["version"]
+description = "Publication figures for engineering and environmental research, drawn at their final size in one house style"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Ali Reza Shahvaran" }]
+keywords = [
+    "matplotlib",
+    "scientific figures",
+    "publication",
+    "colour vision deficiency",
+    "hydrology",
+    "water quality",
+    "taylor diagram",
+    "raincloud plot",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Framework :: Matplotlib",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Scientific/Engineering :: Hydrology",
+    "Typing :: Typed",
+]
+dependencies = [
+    "matplotlib>=3.9",
+    "numpy>=1.26",
+    "pandas>=2.1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "packaging>=24"]
+
+[project.urls]
+Homepage = "https://github.com/arshahvaran/visualific"
+Repository = "https://github.com/arshahvaran/visualific"
+Issues = "https://github.com/arshahvaran/visualific/issues"
+Changelog = "https://github.com/arshahvaran/visualific/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/visualific/__init__.py"
+
+# Allow-list: only these paths go into the sdist (hatchling adds pyproject.toml,
+# README.md and LICENSE itself), so stray local files can never be packaged.
+[tool.hatch.build.targets.sdist]
+only-include = ["src", "tests", "CHANGELOG.md", "CITATION.cff"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/visualific"]
+
+[tool.pytest.ini_options]
+minversion = "8"
+addopts = ["-ra", "--strict-config", "--strict-markers"]
+xfail_strict = true
+filterwarnings = ["error"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "NPY"]
