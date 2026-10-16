@@ -1,0 +1,11 @@
+# Lowest supported versions, used by the "Minimum dependency versions" job in
+# workflows/tests.yml. Keep these equal to the `>=` floors in pyproject.toml;
+# the job fails if the installed versions differ from the floors.
+cycler==0.10.0
+matplotlib==3.9.0
+numpy==1.26.0
+pandas==2.1.0
+pillow==9.3.0
+# matplotlib 3.9 emits a PyparsingDeprecationWarning with pyparsing 3.3 or newer,
+# and pytest runs with filterwarnings = error.
+pyparsing<3.3

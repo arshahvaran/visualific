@@ -15,5 +15,6 @@ All notable changes to this project are recorded here. The format follows [Keep 
 - `vf.check()`: smallest text including scripts, thinnest line, saved width, text outside the figure, and colour separation of the plotted series under simulated colour vision deficiency (and greyscale on request).
 - Bundled Liberation Serif 2.1.5 (SIL Open Font License 1.1) and the Rang 0.3.0 palette values (CC0 1.0), both unmodified. The package licence is `MIT AND OFL-1.1 AND CC0-1.0`; see `LICENSES/`.
 - Pillow and cycler as declared dependencies (matplotlib already requires them).
+- A continuous-integration job that installs the lowest supported dependency versions (cycler 0.10, matplotlib 3.9, numpy 1.26, pandas 2.1, pillow 9.3, with `pyparsing<3.3`) on Python 3.11 and runs the tests, so the floors in `pyproject.toml` stay true.
 
 [Unreleased]: https://github.com/arshahvaran/visualific/commits/main

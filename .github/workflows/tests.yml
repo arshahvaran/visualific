@@ -51,6 +51,42 @@ jobs:
       - name: Test
         run: python -m pytest
 
+  minimum-versions:
+    name: Minimum dependency versions / Python 3.11
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install with the lowest supported dependency versions
+        run: python -m pip install -c .github/constraints-minimum.txt -e ".[test]"
+      - name: Check that the floors in pyproject.toml are what is installed
+        run: |
+          python - <<'EOF'
+          import re
+          import tomllib
+          from importlib.metadata import version
+
+          from packaging.version import Version
+
+          with open("pyproject.toml", "rb") as f:
+              dependencies = tomllib.load(f)["project"]["dependencies"]
+          bad = []
+          for spec in dependencies:
+              name, floor = re.fullmatch(r"([A-Za-z0-9_.-]+)>=([0-9.]+)", spec).groups()
+              installed = version(name)
+              print(f"{name}: floor {floor}, installed {installed}")
+              if Version(installed) != Version(floor):
+                  bad.append(name)
+          raise SystemExit(f"not at their floor: {bad}" if bad else 0)
+          EOF
+      - name: Test
+        run: python -m pytest
+
   build:
     name: Build and test the wheel
     runs-on: ubuntu-latest
