@@ -244,7 +244,10 @@ def test_generate_matches_schema_on_any_numpy(tables, name):
     if name in ("lakes_daily", "lake_annual"):
         assert gen.shape == ref.shape
     num = gen.select_dtypes("number").columns
-    assert np.allclose(gen[num].median(), ref[num].median(), rtol=0.2, equal_nan=True)
+    # Medians of nullable integer columns come back as object dtype on older pandas.
+    gen_med = gen[num].median().to_numpy(dtype=float, na_value=np.nan)
+    ref_med = ref[num].median().to_numpy(dtype=float, na_value=np.nan)
+    assert np.allclose(gen_med, ref_med, rtol=0.2, equal_nan=True)
 
 
 def test_vf_datasets_is_importable_in_a_fresh_process():
