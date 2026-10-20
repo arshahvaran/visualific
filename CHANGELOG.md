@@ -16,5 +16,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 - Bundled Liberation Serif 2.1.5 (SIL Open Font License 1.1) and the Rang 0.3.0 palette values (CC0 1.0), both unmodified. The package licence is `MIT AND OFL-1.1 AND CC0-1.0`; see `LICENSES/`.
 - Pillow and cycler as declared dependencies (matplotlib already requires them).
 - A continuous-integration job that installs the lowest supported dependency versions (cycler 0.10, matplotlib 3.9, numpy 1.26, pandas 2.1, pillow 9.3, with `pyparsing<3.3`) on Python 3.11 and runs the tests, so the floors in `pyproject.toml` stay true.
+- Synthetic example data ([0004](docs/decisions/0004-synthetic-gallery-data.md)): `vf.datasets` with `load_lakes_daily()`, `load_lake_predictions()`, `load_lake_inventory()` and `load_lake_annual()`, `describe()`, `list_datasets()` and the generator's causal graph `TRUE_DAG`. The four tables ship as one 1.3 MB archive with fixed bytes; `source="generate"` rebuilds them from the seeded generator. Categorical columns have a fixed level order, and all place names are fictional.
+- A release workflow that publishes version tags through PyPI Trusted Publishing (pre-releases to TestPyPI, final releases to PyPI after a manual approval) and creates the GitHub release, with the maintainer's steps in `RELEASING.md`. No release has been made yet.
 
 [Unreleased]: https://github.com/arshahvaran/visualific/commits/main

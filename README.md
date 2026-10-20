@@ -5,7 +5,7 @@
 
 Publication figures for engineering and environmental research, drawn at their final size in one house style.
 
-> **Status: early development.** There is no release on PyPI yet. The house style, millimetre widths, palettes, save helper and figure check are in the code; the figure templates, example data and gallery notebook are still to come. The design decisions are recorded in [`docs/decisions`](https://github.com/arshahvaran/visualific/tree/main/docs/decisions).
+> **Status: early development.** There is no release on PyPI yet. The house style, millimetre widths, palettes, save helper and figure check are in the code; so is the synthetic example data. The figure templates and the gallery notebook are still to come. The design decisions are recorded in [`docs/decisions`](https://github.com/arshahvaran/visualific/tree/main/docs/decisions).
 
 ## The idea
 
@@ -52,12 +52,13 @@ vf.save(fig, "fig1", width="elsevier-single")  # writes fig1.pdf and fig1.png
 - `vf.save()` writes a PDF with TrueType fonts, which is the file to submit, and a 600 dpi PNG for previews, then measures each file to confirm that it is the declared width to within 0.5 mm. TIFF output sets its resolution by content type, as Elsevier asks: 1000 dpi for line art, 500 dpi for combination art and 300 dpi for photographs. JPEG is refused.
 - Palettes from the [Rang](https://github.com/mohsennasab/Rang) colours: `vf.qual` (categorical, checked under simulated colour vision deficiency), `vf.termeh` and `vf.rostan` (sequential, light to dark) and `vf.mina_div` (diverging, light at the centre). `vf.qual.styles(n)` gives every series its own marker from the fifth category on. Observed or reference data use one grey, `vf.OBSERVED_GREY` (#808080).
 - `vf.use("science-like")` is for people moving over from SciencePlots: ticks inside on all four sides, as SciencePlots draws them, with `vf.science_safe`, a version of the SciencePlots colours adjusted for colour vision deficiency. The original SciencePlots colours are in `vf.legacy`, for reproducing published figures only.
+- `vf.datasets` loads the synthetic example data: daily records for twelve fictional lakes, model predictions, a lake inventory and a yearly panel, shipped as one archive of four CSV tables (`vf.datasets.load_lakes_daily()` and so on; `vf.datasets.describe()` gives units and descriptions). Every value is generated from a seed, and no place in the data refers to a real study.
 - `vf.check(fig)` measures a finished figure: the smallest text (sub- and superscripts included) and the thinnest line at print size, the saved width, and any text that runs past the figure edge. It also measures how far apart the plotted colours are, as a CIEDE2000 colour difference (shown as dE00), under normal vision and simulated protanopia, deuteranopia and tritanopia, and in greyscale on request.
 
 ## Still to come in v0.1
 
 - Six templates: observed versus predicted, Taylor diagram, error ECDF, raincloud plot, correlation heatmap and a stacked time series.
-- Synthetic example data, and a gallery notebook that runs every template on it, with all style settings in its first cell.
+- A gallery notebook that runs every template on the synthetic data, with all style settings in its first cell.
 
 Later releases are planned to add an UpSet plot that fits in a single panel, ridgeline and pair plots, SHAP force plots, more journal profiles, and maps, including the Peirce quincuncial projection and study-area maps.
 

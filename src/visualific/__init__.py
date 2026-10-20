@@ -15,7 +15,7 @@ The package is in early development. The figure templates arrive later in v0.1;
 see the README for the plan.
 """
 
-from . import palettes, sizes
+from . import datasets, palettes, sizes
 from ._check import CheckReport, FigureCheckError, Measurement, check
 from ._defaults import LINES, OBSERVED_GREY, LineWeights, TypeScale
 from ._export import TIFF_DPI, save
@@ -48,6 +48,7 @@ __all__ = [
     "TypeScale",
     "__version__",
     "check",
+    "datasets",
     "figsize",
     "legacy",
     "mina_div",

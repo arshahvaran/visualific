@@ -2,6 +2,11 @@ cff-version: 1.2.0
 message: "If you use Visualific in your work, please cite it as below."
 title: "Visualific: publication figures for engineering and environmental research"
 type: software
+abstract: >-
+  Visualific is a Python library of publication figures for engineering and environmental
+  research. Figures are drawn at their final printed width in one house style, with type
+  sizes and line weights set in points, palettes checked under simulated colour vision
+  deficiency, and a check that measures the finished figure before submission.
 authors:
   - family-names: Shahvaran
     given-names: Ali Reza

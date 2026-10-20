@@ -1,0 +1,131 @@
+name: release
+
+# Runs only when a version tag is pushed (for example v0.1.0rc1 or v0.1.0).
+# Pre-releases (a, b, rc, dev) go to TestPyPI; final releases go to PyPI after a
+# manual approval in the "pypi" environment. Publishing uses PyPI Trusted
+# Publishing, so no API token is stored anywhere. See RELEASING.md.
+# Actions are pinned to commit SHAs; Dependabot keeps the pins current.
+
+on:
+  push:
+    tags: ["v[0-9]*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and test the distributions
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      prerelease: ${{ steps.version.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Check the tag against the package version and decide where to publish
+        id: version
+        run: |
+          python -m pip install "packaging>=24"
+          python - <<'EOF'
+          import os
+          import pathlib
+          import re
+
+          from packaging.version import Version
+
+          tag = os.environ["GITHUB_REF_NAME"].removeprefix("v")
+          text = pathlib.Path("src/visualific/__init__.py").read_text(encoding="utf-8")
+          version = re.search(r'__version__ = "([^"]+)"', text).group(1)
+          citation = pathlib.Path("CITATION.cff").read_text(encoding="utf-8")
+          if tag != version:
+              raise SystemExit(f"tag {tag} does not match __version__ {version}")
+          if f"version: {version}" not in citation.splitlines():
+              raise SystemExit(f"CITATION.cff does not give version {version}")
+          prerelease = str(Version(version).is_prerelease).lower()
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              print(f"prerelease={prerelease}", file=out)
+          EOF
+      - name: Build and check
+        run: |
+          python -m pip install build twine
+          python -m build
+          python -m twine check --strict dist/*
+      - name: Install the wheel and run the tests against it
+        run: |
+          python -m pip install "$(ls dist/*.whl)[test]"
+          python -m pytest
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  testpypi:
+    name: Publish a pre-release to TestPyPI
+    needs: build
+    if: needs.build.outputs.prerelease == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/visualific
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+  pypi:
+    name: Publish a release to PyPI
+    needs: build
+    if: needs.build.outputs.prerelease == 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: pypi
+      url: https://pypi.org/p/visualific
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+
+  github-release:
+    name: Create the GitHub release
+    needs: pypi
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - name: Create the release (this also triggers the Zenodo archive, once enabled)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME" dist/*
+          --verify-tag
+          --repo "$GITHUB_REPOSITORY"
+          --title "$GITHUB_REF_NAME"
+          --notes "See CHANGELOG.md for the changes in this release."
