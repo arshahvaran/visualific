@@ -1,6 +1,8 @@
 # Local working files (not part of the repository)
 /x/
 /figures/
+# Reference papers and figures collected by the author (third-party copyright)
+/example_figures_to_be_added/
 
 # Local assistant settings and notes
 /CLAUDE.md
