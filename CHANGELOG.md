@@ -19,4 +19,8 @@ All notable changes to this project are recorded here. The format follows [Keep 
 - Synthetic example data ([0004](docs/decisions/0004-synthetic-gallery-data.md)): `vf.datasets` with `load_lakes_daily()`, `load_lake_predictions()`, `load_lake_inventory()` and `load_lake_annual()`, `describe()`, `list_datasets()` and the generator's causal graph `TRUE_DAG`. The four tables ship as one 1.3 MB archive with fixed bytes; `source="generate"` rebuilds them from the seeded generator. Categorical columns have a fixed level order, and all place names are fictional.
 - A release workflow that publishes version tags through PyPI Trusted Publishing (pre-releases to TestPyPI, final releases to PyPI after a manual approval) and creates the GitHub release, with the maintainer's steps in `RELEASING.md`. No release has been made yet.
 
+### Fixed
+
+- The data generator no longer uses `DatetimeIndex.dayofyear`, which pandas 3.1 deprecates; `source="generate"` failed there because tests treat warnings as errors.
+
 [Unreleased]: https://github.com/arshahvaran/visualific/commits/main

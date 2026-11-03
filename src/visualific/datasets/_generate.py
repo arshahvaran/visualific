@@ -291,7 +291,7 @@ LAB_COLS = [
 def _site_daily(rng: np.random.Generator, s: pd.Series) -> pd.DataFrame:
     dates = pd.date_range(SPINUP_START, STUDY_END, freq="D")
     n = len(dates)
-    doy = dates.dayofyear.to_numpy()
+    doy = dates.day_of_year.to_numpy()
     yr = dates.year.to_numpy()
 
     # Meteorology (exogenous roots)
